@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostView: UIView {
+class PostTableCellView: UITableViewCell {
     
     var post = Post()
     
@@ -36,8 +36,8 @@ class PostView: UIView {
         return label
     }()
     
-    private lazy var imageView: UIView = {
-        let imageView = UIView()
+    private lazy var customImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
         //imageView.image = post.photos[0]
@@ -67,51 +67,47 @@ class PostView: UIView {
     
     // MARK: - Initializers
     // TODO: Learn how to initialize things lol.
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(userLabel)
-        self.addSubview(timeLabel)
+        
+        
+        contentView.addSubview(userLabel)
+        contentView.addSubview(timeLabel)
         NSLayoutConstraint.activate([
-            userLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
-            userLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            userLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+            userLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             userLabel.trailingAnchor.constraint(lessThanOrEqualTo: timeLabel.leadingAnchor),
             
-            timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
-            timeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
+            timeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+            timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
             ])
         
-        self.addSubview(imageView)
+        contentView.addSubview(customImageView)
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: userLabel.bottomAnchor, constant: 15),
-            imageView.heightAnchor.constraint(equalTo: self.widthAnchor),
-            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            customImageView.topAnchor.constraint(equalTo: userLabel.bottomAnchor, constant: 15),
+            customImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
+            customImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            customImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
         
-        self.addSubview(captionLabel)
+        contentView.addSubview(captionLabel)
         NSLayoutConstraint.activate([
-            captionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 12),
-            captionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            captionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
+            captionLabel.topAnchor.constraint(equalTo: customImageView.bottomAnchor, constant: 12),
+            captionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            captionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
             ])
         
-        self.addSubview(likesLabel)
+        contentView.addSubview(likesLabel)
         NSLayoutConstraint.activate([
             likesLabel.topAnchor.constraint(equalTo: captionLabel.bottomAnchor, constant: 10),
-            likesLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15)
+            likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
             ])
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    convenience init(post: Post) {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        self.init(frame: frame)
-        
-        self.post = post
+        fatalError("coder: \(coder)")
     }
     
 }
