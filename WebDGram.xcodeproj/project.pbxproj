@@ -14,6 +14,7 @@
 		00578F411F81E3ED0024FA45 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */; };
 		009165DB1F7DFAF0002F8D09 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009165DA1F7DFAF0002F8D09 /* PostTableViewCell.swift */; };
 		009165E01F7DFB63002F8D09 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009165DF1F7DFB63002F8D09 /* Post.swift */; };
+		9062F43773571C83F07B60D2 /* Pods_WebDGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBA512DAFAE840D8C4D0456 /* Pods_WebDGram.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,10 @@
 		00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		009165DA1F7DFAF0002F8D09 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		009165DF1F7DFB63002F8D09 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		009721601F84AD7100E14CE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/martinjrpowlette/Documents/Humber Docs/RIA 2/WebDGram/WebDGram/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
+		8B48D294A6FF887FC15DC016 /* Pods-WebDGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebDGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram.debug.xcconfig"; sourceTree = "<group>"; };
+		CDBA512DAFAE840D8C4D0456 /* Pods_WebDGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebDGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D98CF5E2EB9909B1C612107D /* Pods-WebDGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebDGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9062F43773571C83F07B60D2 /* Pods_WebDGram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +50,8 @@
 			children = (
 				0048AA3D1F7DEAF500B62185 /* WebDGram */,
 				0048AA3C1F7DEAF500B62185 /* Products */,
+				55B965F624FAE3402C1918D9 /* Pods */,
+				B25F0FB872D2FCCF0A77587D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +72,7 @@
 				0048AA3E1F7DEAF500B62185 /* AppDelegate.swift */,
 				0048AA451F7DEAF500B62185 /* Assets.xcassets */,
 				0048AA471F7DEAF500B62185 /* LaunchScreen.storyboard */,
+				009721601F84AD7100E14CE0 /* GoogleService-Info.plist */,
 				0048AA4A1F7DEAF500B62185 /* Info.plist */,
 			);
 			path = WebDGram;
@@ -94,6 +103,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		55B965F624FAE3402C1918D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B48D294A6FF887FC15DC016 /* Pods-WebDGram.debug.xcconfig */,
+				D98CF5E2EB9909B1C612107D /* Pods-WebDGram.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B25F0FB872D2FCCF0A77587D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDBA512DAFAE840D8C4D0456 /* Pods_WebDGram.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -101,9 +127,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0048AA4D1F7DEAF500B62185 /* Build configuration list for PBXNativeTarget "WebDGram" */;
 			buildPhases = (
+				9213FA8C3DA071DAF1C80844 /* [CP] Check Pods Manifest.lock */,
 				0048AA371F7DEAF500B62185 /* Sources */,
 				0048AA381F7DEAF500B62185 /* Frameworks */,
 				0048AA391F7DEAF500B62185 /* Resources */,
+				70ECF8CBC4CB988EED47B1B0 /* [CP] Embed Pods Frameworks */,
+				89A04736B1A89200638B3338 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -159,6 +188,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		70ECF8CBC4CB988EED47B1B0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89A04736B1A89200638B3338 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9213FA8C3DA071DAF1C80844 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0048AA371F7DEAF500B62185 /* Sources */ = {
@@ -296,6 +373,7 @@
 		};
 		0048AA4E1F7DEAF500B62185 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B48D294A6FF887FC15DC016 /* Pods-WebDGram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -311,6 +389,7 @@
 		};
 		0048AA4F1F7DEAF500B62185 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D98CF5E2EB9909B1C612107D /* Pods-WebDGram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
