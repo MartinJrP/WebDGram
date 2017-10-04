@@ -7,5 +7,6 @@ target 'WebDGram' do
 
   # Pods for WebDGram
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
 end

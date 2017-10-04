@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HomeTableViewController: UITableViewController {
 
-    var posts: [Post] = [Post(), Post(), Post()]
+    var posts: [Post] = [Post()]
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.register(PostTableCellView.self, forCellReuseIdentifier: "PostCell")
@@ -28,7 +29,7 @@ class HomeTableViewController: UITableViewController {
     
     // MARK: - View Setup
     private func setNavigationItem() {
-        let composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: nil, action: nil)
+        let composeButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(presentUploadController))
         composeButton.tintColor = .black
         navigationItem.rightBarButtonItem = composeButton
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "WebDGram-logo"))
@@ -36,6 +37,11 @@ class HomeTableViewController: UITableViewController {
     
     private func setupView() {
         view.backgroundColor = .white
+    }
+    
+    @objc private func presentUploadController() {
+        let navController = UINavigationController(rootViewController: UploadViewController())
+        present(navController, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source

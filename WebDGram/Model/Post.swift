@@ -13,14 +13,14 @@ struct Post {
     let username: String
     let images: [UIImage]
     let timestamp: Date
-    let description: String
+    let caption: String
     let likes: Int
     
     init(){
         self.username = "skydrew15"
         self.images = [#imageLiteral(resourceName: "dog1"), #imageLiteral(resourceName: "dog2"), #imageLiteral(resourceName: "dog3")]
         self.timestamp = Date()
-        self.description = "A description"
+        self.caption = "A description"
         self.likes = 5
     }
 }

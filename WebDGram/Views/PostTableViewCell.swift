@@ -16,6 +16,8 @@ class PostTableCellView: UITableViewCell {
         }
     }
     
+    // MARK: - Views
+    
     private lazy var userLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +48,10 @@ class PostTableCellView: UITableViewCell {
         gallery.translatesAutoresizingMaskIntoConstraints = false
         gallery.backgroundColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
         
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(likePost))
+        doubleTap.numberOfTapsRequired = 2
+        gallery.addGestureRecognizer(doubleTap)
+        
         return gallery
     }()
     
@@ -54,7 +60,7 @@ class PostTableCellView: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         label.numberOfLines = 0
-        label.text = "Just something I had to put together real quick for Greg’s class!"
+        label.text = post.caption
         
         return label
     }()
@@ -62,15 +68,14 @@ class PostTableCellView: UITableViewCell {
     private lazy var likesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "x likes"
+        label.text = post.likes > 1 || post.likes == 0 ? "\(post.likes) likes" : "\(post.likes) like"
         
         return label
     }()
     
     
     
-    // MARK: - Initializers
-    // TODO: Learn how to initialize things lol.
+    // MARK: - Methods
     private func layoutViews() {
         
         contentView.addSubview(userLabel)
@@ -105,6 +110,10 @@ class PostTableCellView: UITableViewCell {
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
             ])
+    }
+    
+    @objc private func likePost() {
+        print("Implement like")
     }
     
 }

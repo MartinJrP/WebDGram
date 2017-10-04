@@ -12,8 +12,11 @@
 		0048AA461F7DEAF500B62185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0048AA451F7DEAF500B62185 /* Assets.xcassets */; };
 		0048AA491F7DEAF500B62185 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0048AA471F7DEAF500B62185 /* LaunchScreen.storyboard */; };
 		00578F411F81E3ED0024FA45 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */; };
+		007EA7531F857E0500D92261 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007EA7521F857E0500D92261 /* UploadViewController.swift */; };
 		009165DB1F7DFAF0002F8D09 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009165DA1F7DFAF0002F8D09 /* PostTableViewCell.swift */; };
 		009165E01F7DFB63002F8D09 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009165DF1F7DFB63002F8D09 /* Post.swift */; };
+		009721611F84B92E00E14CE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 009721601F84AD7100E14CE0 /* GoogleService-Info.plist */; };
+		009721631F84BF9000E14CE0 /* FirebaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009721621F84BF9000E14CE0 /* FirebaseHandler.swift */; };
 		9062F43773571C83F07B60D2 /* Pods_WebDGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBA512DAFAE840D8C4D0456 /* Pods_WebDGram.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,9 +28,11 @@
 		0048AA481F7DEAF500B62185 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0048AA4A1F7DEAF500B62185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		007EA7521F857E0500D92261 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		009165DA1F7DFAF0002F8D09 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		009165DF1F7DFB63002F8D09 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		009721601F84AD7100E14CE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/martinjrpowlette/Documents/Humber Docs/RIA 2/WebDGram/WebDGram/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
+		009721621F84BF9000E14CE0 /* FirebaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
 		8B48D294A6FF887FC15DC016 /* Pods-WebDGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebDGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram.debug.xcconfig"; sourceTree = "<group>"; };
 		CDBA512DAFAE840D8C4D0456 /* Pods_WebDGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebDGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98CF5E2EB9909B1C612107D /* Pods-WebDGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebDGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */,
+				007EA7521F857E0500D92261 /* UploadViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -99,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				009165DF1F7DFB63002F8D09 /* Post.swift */,
+				009721621F84BF9000E14CE0 /* FirebaseHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,6 +191,7 @@
 			files = (
 				0048AA491F7DEAF500B62185 /* LaunchScreen.storyboard in Resources */,
 				0048AA461F7DEAF500B62185 /* Assets.xcassets in Resources */,
+				009721611F84B92E00E14CE0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +251,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				000532D71F841BA800B23316 /* ImageGalleryView.swift in Sources */,
+				007EA7531F857E0500D92261 /* UploadViewController.swift in Sources */,
+				009721631F84BF9000E14CE0 /* FirebaseHandler.swift in Sources */,
 				009165DB1F7DFAF0002F8D09 /* PostTableViewCell.swift in Sources */,
 				0048AA3F1F7DEAF500B62185 /* AppDelegate.swift in Sources */,
 				009165E01F7DFB63002F8D09 /* Post.swift in Sources */,
