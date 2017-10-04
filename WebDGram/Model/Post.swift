@@ -11,23 +11,14 @@ import UIKit
 
 struct Post {
     let username: String
-    let photos: [UIImage]
+    let images: [UIImage]
     let timestamp: Date
     let description: String
     let likes: Int
     
-    
-    init(username: String, photos: [UIImage], timestamp: Date, description: String, likes: Int){
-        self.username = username
-        self.photos = photos
-        self.timestamp = timestamp
-        self.description = description
-        self.likes = likes
-    }
-    
     init(){
-        self.username = "skydrew"
-        self.photos = [UIImage()]
+        self.username = "skydrew15"
+        self.images = [#imageLiteral(resourceName: "dog1"), #imageLiteral(resourceName: "dog2"), #imageLiteral(resourceName: "dog3")]
         self.timestamp = Date()
         self.description = "A description"
         self.likes = 5

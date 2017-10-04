@@ -10,17 +10,21 @@ import UIKit
 
 class PostTableCellView: UITableViewCell {
     
-    var post = Post()
+    var post: Post = Post() {
+        didSet {
+            layoutViews()
+        }
+    }
     
     private lazy var userLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         
         let text: String
-        if post.photos.count <= 1 {
+        if post.images.count <= 1 {
             text = "\(post.username) shared a photo"
         } else {
-            text = "\(post.username) shared \(post.photos.count) photos"
+            text = "\(post.username) shared \(post.images.count) photos"
         }
         
         label.text = text
@@ -36,13 +40,13 @@ class PostTableCellView: UITableViewCell {
         return label
     }()
     
-    private lazy var customImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
-        //imageView.image = post.photos[0]
+    private lazy var imageGalleryView: ImageGalleryView = {
+        let gallery = ImageGalleryView()
+        gallery.images = post.images
+        gallery.translatesAutoresizingMaskIntoConstraints = false
+        gallery.backgroundColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
         
-        return imageView
+        return gallery
     }()
     
     private lazy var captionLabel: UILabel = {
@@ -67,10 +71,7 @@ class PostTableCellView: UITableViewCell {
     
     // MARK: - Initializers
     // TODO: Learn how to initialize things lol.
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        
+    private func layoutViews() {
         
         contentView.addSubview(userLabel)
         contentView.addSubview(timeLabel)
@@ -83,17 +84,17 @@ class PostTableCellView: UITableViewCell {
             timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
             ])
         
-        contentView.addSubview(customImageView)
+        contentView.addSubview(imageGalleryView)
         NSLayoutConstraint.activate([
-            customImageView.topAnchor.constraint(equalTo: userLabel.bottomAnchor, constant: 15),
-            customImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
-            customImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            customImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            imageGalleryView.topAnchor.constraint(equalTo: userLabel.bottomAnchor, constant: 15),
+            imageGalleryView.heightAnchor.constraint(equalTo: contentView.widthAnchor),
+            imageGalleryView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageGalleryView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             ])
         
         contentView.addSubview(captionLabel)
         NSLayoutConstraint.activate([
-            captionLabel.topAnchor.constraint(equalTo: customImageView.bottomAnchor, constant: 12),
+            captionLabel.topAnchor.constraint(equalTo: imageGalleryView.bottomAnchor, constant: 12),
             captionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             captionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
             ])
@@ -104,10 +105,6 @@ class PostTableCellView: UITableViewCell {
             likesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
             ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("coder: \(coder)")
     }
     
 }

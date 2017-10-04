@@ -11,7 +11,6 @@ import UIKit
 class HomeTableViewController: UITableViewController {
 
     var posts: [Post] = [Post(), Post(), Post()]
-    var currentCellHeight: CGFloat? = nil
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.register(PostTableCellView.self, forCellReuseIdentifier: "PostCell")
