@@ -30,8 +30,10 @@ class NetworkHandler {
      Get all posts from the database and passes a collection of ready to use post to a completion handler
     */
     func getAllPosts(completionHandler: @escaping ([Post]) -> Void) {
-        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         firestore.collection("posts").getDocuments { (querySnapshot, err) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            
             if let err = err {
                 print("Error getting documents: \(err)")
                 return
@@ -64,8 +66,10 @@ class NetworkHandler {
                 let post = Post(username: username, imageRefs: imageRefs, timestamp: Date(), caption: caption, likes: likes)
                 posts.append(post)
             }
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             completionHandler(posts)
+            
             
         }
     }

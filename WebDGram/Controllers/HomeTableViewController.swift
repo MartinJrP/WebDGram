@@ -18,8 +18,9 @@ class HomeTableViewController: UITableViewController {
     }
     var networkHandler: NetworkHandler!
     
-    
     override func viewWillAppear(_ animated: Bool) {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshPosts(_:)), for: .valueChanged)
         tableView.register(PostTableCellView.self, forCellReuseIdentifier: "PostCell")
         tableView.estimatedRowHeight = 550.0
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -33,9 +34,8 @@ class HomeTableViewController: UITableViewController {
         setupView()
         
         networkHandler = NetworkHandler()
-        networkHandler.getAllPosts { posts in
-            self.posts = posts
-        }
+        
+        loadPosts()
     }
     
     // MARK: - View Setup
@@ -50,15 +50,18 @@ class HomeTableViewController: UITableViewController {
         view.backgroundColor = .white
     }
     
-    @objc private func presentUploadController() {
-        let navController = UINavigationController(rootViewController: UploadViewController())
-        present(navController, animated: true, completion: nil)
+    private func loadPosts() {
+        networkHandler.getAllPosts { posts in
+            self.posts = posts
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
-
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return posts.count != 0 ? 1 : 0
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -69,6 +72,18 @@ class HomeTableViewController: UITableViewController {
         cell.post = posts[indexPath.row]
         
         return cell
+    }
+
+    
+    // MARK - Actions
+    
+    @objc private func refreshPosts(_ : UIRefreshControl) {
+        loadPosts()
+    }
+    
+    @objc private func presentUploadController() {
+        let navController = UINavigationController(rootViewController: UploadViewController())
+        present(navController, animated: true, completion: nil)
     }
 
 }
