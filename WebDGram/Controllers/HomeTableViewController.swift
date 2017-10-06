@@ -7,11 +7,17 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 class HomeTableViewController: UITableViewController {
 
-    var posts: [Post] = [Post()]
+    var posts: [Post] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    var networkHandler: NetworkHandler!
+    
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.register(PostTableCellView.self, forCellReuseIdentifier: "PostCell")
@@ -25,6 +31,11 @@ class HomeTableViewController: UITableViewController {
         
         setNavigationItem()
         setupView()
+        
+        networkHandler = NetworkHandler()
+        networkHandler.getAllPosts { posts in
+            self.posts = posts
+        }
     }
     
     // MARK: - View Setup

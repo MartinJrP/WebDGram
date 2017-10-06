@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorageUI
 
 class ImageGalleryView: UIScrollView {
 
-    var images: [UIImage]? {
+    var imageRefs: [StorageReference]! {
         didSet {
             initialLayout()
         }
@@ -24,7 +26,7 @@ class ImageGalleryView: UIScrollView {
     }
     
     private func initialLayout() {
-        guard let images = images else {
+        guard let images = imageRefs else {
             print("Display image for broken link")
             return
         }
@@ -34,13 +36,14 @@ class ImageGalleryView: UIScrollView {
         
         let screenWidth = UIScreen.main.bounds.width
         
-        for i in 0..<images.count {
+        for i in 0..<imageRefs.count {
             let imageView = UIImageView()
-            imageView.image = images[i]
             imageView.contentMode = .scaleAspectFill
             
             let xPos = screenWidth * CGFloat(i)
             imageView.frame = CGRect(x: xPos, y: 0, width: screenWidth, height: screenWidth)
+            
+            imageView.sd_setImage(with: imageRefs[i])
             
             self.addSubview(imageView)
         }

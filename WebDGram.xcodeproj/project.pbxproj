@@ -17,6 +17,7 @@
 		009165E01F7DFB63002F8D09 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009165DF1F7DFB63002F8D09 /* Post.swift */; };
 		009721611F84B92E00E14CE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 009721601F84AD7100E14CE0 /* GoogleService-Info.plist */; };
 		009721631F84BF9000E14CE0 /* FirebaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009721621F84BF9000E14CE0 /* FirebaseHandler.swift */; };
+		009F2CC21F8751DF00D3A483 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009F2CC11F8751DF00D3A483 /* WelcomeViewController.swift */; };
 		9062F43773571C83F07B60D2 /* Pods_WebDGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBA512DAFAE840D8C4D0456 /* Pods_WebDGram.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		009165DF1F7DFB63002F8D09 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		009721601F84AD7100E14CE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/martinjrpowlette/Documents/Humber Docs/RIA 2/WebDGram/WebDGram/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		009721621F84BF9000E14CE0 /* FirebaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHandler.swift; sourceTree = "<group>"; };
+		009F2CC11F8751DF00D3A483 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8B48D294A6FF887FC15DC016 /* Pods-WebDGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebDGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram.debug.xcconfig"; sourceTree = "<group>"; };
 		CDBA512DAFAE840D8C4D0456 /* Pods_WebDGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebDGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98CF5E2EB9909B1C612107D /* Pods-WebDGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebDGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */,
 				007EA7521F857E0500D92261 /* UploadViewController.swift */,
+				009F2CC11F8751DF00D3A483 /* WelcomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -204,9 +207,32 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WebDGram/Pods-WebDGram-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -234,13 +260,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WebDGram-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -251,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				000532D71F841BA800B23316 /* ImageGalleryView.swift in Sources */,
+				009F2CC21F8751DF00D3A483 /* WelcomeViewController.swift in Sources */,
 				007EA7531F857E0500D92261 /* UploadViewController.swift in Sources */,
 				009721631F84BF9000E14CE0 /* FirebaseHandler.swift in Sources */,
 				009165DB1F7DFAF0002F8D09 /* PostTableViewCell.swift in Sources */,

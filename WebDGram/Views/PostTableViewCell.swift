@@ -10,7 +10,7 @@ import UIKit
 
 class PostTableCellView: UITableViewCell {
     
-    var post: Post = Post() {
+    var post: Post! = nil {
         didSet {
             layoutViews()
         }
@@ -23,10 +23,10 @@ class PostTableCellView: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         let text: String
-        if post.images.count <= 1 {
+        if post.imageRefs.count <= 1 {
             text = "\(post.username) shared a photo"
         } else {
-            text = "\(post.username) shared \(post.images.count) photos"
+            text = "\(post.username) shared \(post.imageRefs.count) photos"
         }
         
         label.text = text
@@ -44,7 +44,7 @@ class PostTableCellView: UITableViewCell {
     
     private lazy var imageGalleryView: ImageGalleryView = {
         let gallery = ImageGalleryView()
-        gallery.images = post.images
+        gallery.imageRefs = post.imageRefs
         gallery.translatesAutoresizingMaskIntoConstraints = false
         gallery.backgroundColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
         

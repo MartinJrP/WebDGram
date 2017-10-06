@@ -8,19 +8,12 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 struct Post {
     let username: String
-    let images: [UIImage]
+    let imageRefs: [StorageReference]
     let timestamp: Date
     let caption: String
     let likes: Int
-    
-    init(){
-        self.username = "skydrew15"
-        self.images = [#imageLiteral(resourceName: "dog1"), #imageLiteral(resourceName: "dog2"), #imageLiteral(resourceName: "dog3")]
-        self.timestamp = Date()
-        self.caption = "A description"
-        self.likes = 5
-    }
 }
