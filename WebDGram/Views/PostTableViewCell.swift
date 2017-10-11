@@ -21,6 +21,7 @@ class PostTableCellView: UITableViewCell {
     private lazy var userLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         
         let text: String
         if post.imageRefs.count <= 1 {
@@ -29,8 +30,18 @@ class PostTableCellView: UITableViewCell {
             text = "\(post.username) shared \(post.imageRefs.count) photos"
         }
         
-        label.text = text
-        label.numberOfLines = 0
+        let attributedText = NSMutableAttributedString(string: text)
+        
+        // Make username bold
+        // https://stackoverflow.com/questions/27040924/nsrange-from-swift-range
+        text.enumerateSubstrings(in: text.startIndex..<text.endIndex, options: .byWords) {
+            (substring, substringRange, _, _) in
+            if substring == self.post.username {
+                attributedText.addAttribute(NSAttributedStringKey.font, value: UIFont.systemFont(ofSize: UIFont.labelFontSize, weight: .semibold), range: NSRange(substringRange, in: text))
+            }
+        }
+        
+        label.attributedText = attributedText
         return label
     }()
     
@@ -68,6 +79,7 @@ class PostTableCellView: UITableViewCell {
     private lazy var likesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: UIFont.labelFontSize, weight: .semibold)
         label.text = post.likes > 1 || post.likes == 0 ? "\(post.likes) likes" : "\(post.likes) like"
         
         return label
