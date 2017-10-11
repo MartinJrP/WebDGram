@@ -19,6 +19,7 @@ class HomeTableViewController: UITableViewController {
     var networkHandler: NetworkHandler!
     
     override func viewWillAppear(_ animated: Bool) {
+        tableView.allowsSelection = false
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refreshPosts(_:)), for: .valueChanged)
         tableView.register(PostTableCellView.self, forCellReuseIdentifier: "PostCell")
