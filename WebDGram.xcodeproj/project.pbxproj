@@ -11,6 +11,10 @@
 		0048AA3F1F7DEAF500B62185 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048AA3E1F7DEAF500B62185 /* AppDelegate.swift */; };
 		0048AA461F7DEAF500B62185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0048AA451F7DEAF500B62185 /* Assets.xcassets */; };
 		0048AA491F7DEAF500B62185 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0048AA471F7DEAF500B62185 /* LaunchScreen.storyboard */; };
+		004937251F8F0A02007CD846 /* UIView+BackgroundGradients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004937241F8F0A02007CD846 /* UIView+BackgroundGradients.swift */; };
+		004A3F841F8F289400E2C2BC /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A3F831F8F289400E2C2BC /* Storage.swift */; };
+		004A3F861F8F3AE500E2C2BC /* HomeTableViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004A3F851F8F3AE500E2C2BC /* HomeTableViewController+DataSource.swift */; };
+		005708AA1F8DFEDD00FBA7A6 /* UploadFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005708A91F8DFEDD00FBA7A6 /* UploadFormView.swift */; };
 		00578F411F81E3ED0024FA45 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */; };
 		007EA7531F857E0500D92261 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007EA7521F857E0500D92261 /* UploadViewController.swift */; };
 		009165DB1F7DFAF0002F8D09 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009165DA1F7DFAF0002F8D09 /* PostTableViewCell.swift */; };
@@ -28,6 +32,10 @@
 		0048AA451F7DEAF500B62185 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0048AA481F7DEAF500B62185 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0048AA4A1F7DEAF500B62185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		004937241F8F0A02007CD846 /* UIView+BackgroundGradients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BackgroundGradients.swift"; sourceTree = "<group>"; };
+		004A3F831F8F289400E2C2BC /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		004A3F851F8F3AE500E2C2BC /* HomeTableViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeTableViewController+DataSource.swift"; sourceTree = "<group>"; };
+		005708A91F8DFEDD00FBA7A6 /* UploadFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFormView.swift; sourceTree = "<group>"; };
 		00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		007EA7521F857E0500D92261 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		009165DA1F7DFAF0002F8D09 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -73,6 +81,7 @@
 		0048AA3D1F7DEAF500B62185 /* WebDGram */ = {
 			isa = PBXGroup;
 			children = (
+				004937231F8F09E8007CD846 /* Helpers */,
 				009165DE1F7DFB56002F8D09 /* Model */,
 				009165DD1F7DFB0B002F8D09 /* Controllers */,
 				009165DC1F7DFAFC002F8D09 /* Views */,
@@ -85,11 +94,20 @@
 			path = WebDGram;
 			sourceTree = "<group>";
 		};
+		004937231F8F09E8007CD846 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				004937241F8F0A02007CD846 /* UIView+BackgroundGradients.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		009165DC1F7DFAFC002F8D09 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				009165DA1F7DFAF0002F8D09 /* PostTableViewCell.swift */,
 				000532D61F841BA800B23316 /* ImageGalleryView.swift */,
+				005708A91F8DFEDD00FBA7A6 /* UploadFormView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -98,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */,
+				004A3F851F8F3AE500E2C2BC /* HomeTableViewController+DataSource.swift */,
 				007EA7521F857E0500D92261 /* UploadViewController.swift */,
 				009F2CC11F8751DF00D3A483 /* WelcomeViewController.swift */,
 			);
@@ -109,6 +128,7 @@
 			children = (
 				009165DF1F7DFB63002F8D09 /* Post.swift */,
 				009721621F84BF9000E14CE0 /* FirebaseHandler.swift */,
+				004A3F831F8F289400E2C2BC /* Storage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,7 +299,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004937251F8F0A02007CD846 /* UIView+BackgroundGradients.swift in Sources */,
+				004A3F861F8F3AE500E2C2BC /* HomeTableViewController+DataSource.swift in Sources */,
+				004A3F841F8F289400E2C2BC /* Storage.swift in Sources */,
 				000532D71F841BA800B23316 /* ImageGalleryView.swift in Sources */,
+				005708AA1F8DFEDD00FBA7A6 /* UploadFormView.swift in Sources */,
 				009F2CC21F8751DF00D3A483 /* WelcomeViewController.swift in Sources */,
 				007EA7531F857E0500D92261 /* UploadViewController.swift in Sources */,
 				009721631F84BF9000E14CE0 /* FirebaseHandler.swift in Sources */,

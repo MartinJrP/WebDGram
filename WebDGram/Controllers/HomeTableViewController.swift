@@ -19,23 +19,19 @@ class HomeTableViewController: UITableViewController {
     var networkHandler: NetworkHandler!
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.allowsSelection = false
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(refreshPosts(_:)), for: .valueChanged)
-        tableView.register(PostTableCellView.self, forCellReuseIdentifier: "PostCell")
-        tableView.estimatedRowHeight = 550.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
+        super.viewWillAppear(animated)
+        setupTableView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presentWelcomeScreenIfFirstLaunch()
+       
         setNavigationItem()
         setupView()
         
         networkHandler = NetworkHandler()
-        
         loadPosts()
     }
     
@@ -45,6 +41,15 @@ class HomeTableViewController: UITableViewController {
         composeButton.tintColor = .black
         navigationItem.rightBarButtonItem = composeButton
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "WebDGram-logo"))
+    }
+    
+    private func setupTableView(){
+        tableView.allowsSelection = false
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshPosts(_:)), for: .valueChanged)
+        tableView.register(PostTableCellView.self, forCellReuseIdentifier: "PostCell")
+        tableView.estimatedRowHeight = 550.0
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     private func setupView() {
@@ -58,25 +63,26 @@ class HomeTableViewController: UITableViewController {
         }
     }
     
-    
-    // MARK: - Table view data source
+    fileprivate func presentWelcomeScreenIfFirstLaunch() {
+        /*
+         If settings file exists, check it to see if this is the first launch. If it is present welcome screen.
+         If it doesn't exist show welcome screen.
+         */
+        if FileManager.default.fileExists(atPath: AppStorage.SettingsArchiveURL.path) {
+            print("File available")
+            let appSettings = NSKeyedUnarchiver.unarchiveObject(withFile: AppStorage.SettingsArchiveURL.path) as? AppStorage
+            if let app = appSettings, app.isFirstLaunch {
+                print("Is first launch? \(app.isFirstLaunch)")
+                present(WelcomeViewController(), animated: true, completion: nil)
+            }
+        } else {
+            print("File nonexistant")
+            present(WelcomeViewController(), animated: true, completion: nil)
+        }
+    }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return posts.count != 0 ? 1 : 0
-    }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
-    }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostTableCellView else { fatalError() }
-        
-        cell.post = posts[indexPath.row]
-        
-        return cell
-    }
-
     
-    // MARK - Actions
+    // MARK: - Actions
     
     @objc private func refreshPosts(_ : UIRefreshControl) {
         loadPosts()
