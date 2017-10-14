@@ -69,14 +69,11 @@ class HomeTableViewController: UITableViewController {
          If it doesn't exist show welcome screen.
          */
         if FileManager.default.fileExists(atPath: AppStorage.SettingsArchiveURL.path) {
-            print("File available")
             let appSettings = NSKeyedUnarchiver.unarchiveObject(withFile: AppStorage.SettingsArchiveURL.path) as? AppStorage
             if let app = appSettings, app.isFirstLaunch {
-                print("Is first launch? \(app.isFirstLaunch)")
                 present(WelcomeViewController(), animated: true, completion: nil)
             }
         } else {
-            print("File nonexistant")
             present(WelcomeViewController(), animated: true, completion: nil)
         }
     }
