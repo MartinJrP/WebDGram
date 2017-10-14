@@ -30,6 +30,7 @@ class NetworkHandler {
      Get all posts from the database and passes a collection of ready to use post to a completion handler
     */
     func getAllPosts(completionHandler: @escaping ([Post]) -> Void) {
+        
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         firestore.collection("posts").getDocuments { (querySnapshot, err) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -40,6 +41,10 @@ class NetworkHandler {
             }
             
             var posts: [Post] = []
+            
+            /* TODO: - Explore custom objects when downloading data
+                       https://firebase.google.com/docs/firestore/query-data/get-data?authuser=0
+             */
             
             for document in querySnapshot!.documents {
                 
@@ -63,7 +68,7 @@ class NetworkHandler {
                 // to do...
                 
                 // make post
-                let post = Post(username: username, imageRefs: imageRefs, timestamp: Date(), caption: caption, likes: likes)
+                let post = Post(username: username, imageRefs: imageRefs, timestamp: Date(), caption: caption, likes: likes, id: document.documentID)
                 posts.append(post)
             }
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -72,6 +77,14 @@ class NetworkHandler {
             
             
         }
+    }
+    
+    func likePost(with id: String, completionHandler: @escaping () -> Void) {
+        //let postRef = firestore.collection("posts").document(id)
+        
+        // TODO: Save posts a user has liked and prevent multiple likes
+        
+        
     }
     
 

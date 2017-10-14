@@ -16,4 +16,5 @@ struct Post {
     let timestamp: Date
     let caption: String
     let likes: Int
+    let id: String
 }
