@@ -18,3 +18,17 @@ struct Post {
     let likes: Int
     let id: String
 }
+
+struct PostKeys {
+    static let username = "username"
+    static let images = "images"
+    static let timestamp = "timestamp"
+    static let caption = "caption"
+    static let likes = "likes"
+}
+
+struct PostRequest {
+    var username: String
+    var images: [NSURL]
+    var caption: String
+}

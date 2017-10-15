@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 protocol ImageSelectionViewDelegate {
-    func user(didAdd image: UIImage)
+    func userDidTouchAddImageButton()
 }

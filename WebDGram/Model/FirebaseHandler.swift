@@ -11,12 +11,12 @@ import Firebase
 
 class NetworkHandler {
     
-    var firestore: Firestore
+    var db: Firestore
     var storage: Storage
     
     init () {
         self.storage = Storage.storage()
-        self.firestore = Firestore.firestore()
+        self.db = Firestore.firestore()
     }
     
     // Error handling only used for FailedToUnwrapImage
@@ -32,7 +32,7 @@ class NetworkHandler {
     func getAllPosts(completionHandler: @escaping ([Post]) -> Void) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        firestore.collection("posts").getDocuments { (querySnapshot, err) in
+        db.collection("posts").getDocuments { (querySnapshot, err) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             if let err = err {
@@ -77,6 +77,50 @@ class NetworkHandler {
             
             
         }
+    }
+    
+    /*
+     Uploads a post to Firebase
+     */
+    func upload(_ postRequest: PostRequest, completionHandler: @escaping (_ wasSucessful: Bool) -> Void) {
+        // Create refernce to new post document
+        let newPostRef = db.collection("posts").document()
+        
+        // Create and store references to all images with an id based on the post document
+        // Upload them as the references are made
+        var imagePathes = [String]()
+        
+        // TODO: - Maybe using extensiong upload from memory?
+        
+        for (index, imageURL) in postRequest.images.enumerated() {
+            let fileExtension = imageURL.pathExtension ?? ""
+            let ref = storage.reference().child("images/\(newPostRef.documentID)-\(index).\(fileExtension)")
+            imagePathes.append(ref.fullPath)
+            
+            ref.putFile(from: imageURL as URL, metadata: nil) { metadata, err in
+                if let err = err {
+                    print("Failed to upload image \(imageURL). Error: \(err)")
+                    completionHandler(false)
+                    return
+                }
+            }
+        }
+        newPostRef.setData([
+            PostKeys.username : postRequest.username,
+            PostKeys.caption : postRequest.caption,
+            PostKeys.images : imagePathes,
+            PostKeys.likes : 0,
+            PostKeys.timestamp: Date()
+        ]) { err in
+            if let err = err {
+                print("Unable to add post to collection. Error \(err)")
+                completionHandler(false)
+            } else {
+                completionHandler(true)
+            }
+        }
+        
+        // Call completion
     }
     
     func likePost(with id: String, completionHandler: @escaping () -> Void) {

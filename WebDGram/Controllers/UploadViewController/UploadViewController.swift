@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import Photos
 
-class UploadViewController: UIViewController, ImageSelectionViewDelegate {
+class UploadViewController: UIViewController, ImageSelectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let scrollView = UIScrollView()
     let imageSelector = ImageSelectionView()
+    let imagePicker = UIImagePickerController()
+    
+    var selectedImages = [NSURL]()
+    let usernameField = UITextField()
+    let captionField = UITextField()
     
     
     // MARK: - Load View
@@ -21,9 +27,7 @@ class UploadViewController: UIViewController, ImageSelectionViewDelegate {
 
         view.backgroundColor = .white
         setNavigationItem()
-        
         setScrollView()
-        
         setupSubviews()
 
     }
@@ -34,7 +38,7 @@ class UploadViewController: UIViewController, ImageSelectionViewDelegate {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissController))
         navigationItem.leftBarButtonItem = cancelButton
         
-        let uploadButton = UIBarButtonItem(title: "Upload", style: .done, target: self, action: nil)
+        let uploadButton = UIBarButtonItem(title: "Upload", style: .done, target: self, action: #selector(uploadPost))
         navigationItem.rightBarButtonItem = uploadButton
     }
     
@@ -53,7 +57,7 @@ class UploadViewController: UIViewController, ImageSelectionViewDelegate {
         ])
     }
     
-    fileprivate func setupSubviews() {
+    private func setupSubviews() {
         // Images Label
         let imageLabel = UILabel()
         imageLabel.text = "Your Swanky Candids"
@@ -92,7 +96,6 @@ class UploadViewController: UIViewController, ImageSelectionViewDelegate {
             ])
         
         // Label Text Field
-        let usernameField = UITextField()
         usernameField.placeholder = "A sweet username to rule them all"
         view.addSubview(usernameField)
         usernameField.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +117,6 @@ class UploadViewController: UIViewController, ImageSelectionViewDelegate {
             ])
         
         // Caption Field
-        let captionField = UITextField()
         captionField.placeholder = "Tell us why this is super cool"
         view.addSubview(captionField)
         captionField.translatesAutoresizingMaskIntoConstraints = false
@@ -132,10 +134,59 @@ class UploadViewController: UIViewController, ImageSelectionViewDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - ImageSelectorDelegate Methods
-    
-    func user(didAdd image: UIImage) {
-        print("The delegate works!")
+    @objc private func uploadPost() {
+        // Set spinner to right navigation item
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let uploadBarButtonItem = navigationItem.rightBarButtonItem
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+        
+        let postRequest = PostRequest(username: usernameField.text!, images: selectedImages, caption: captionField.text!)
+        
+        let networkHandler = NetworkHandler()
+        networkHandler.upload(postRequest) { wasSucessful in
+            if wasSucessful {
+                self.dismissController()
+            } else {
+                let alert = UIAlertController(title: "Failed To Upload Post", message: "Something went wrong and we're not 100% sure what it was. Maybe try again in a bit?", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                self.navigationItem.rightBarButtonItem = uploadBarButtonItem
+                alert.addAction(okButton)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
     }
     
+    // MARK: - ImageSelectorDelegate Methods
+    
+    func userDidTouchAddImageButton() {
+        
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            imagePicker.allowsEditing = true
+            imagePicker.delegate = self
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate Methods
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+              let imageURL = info[UIImagePickerControllerImageURL] as? NSURL
+        else { return }
+        
+        selectedImages.append(imageURL)
+        imageSelector.addImageToPreview(image)
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }

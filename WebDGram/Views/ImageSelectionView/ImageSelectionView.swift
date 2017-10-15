@@ -13,6 +13,8 @@ class ImageSelectionView: UIView {
     private let imageHeight = 95
     private let imageWidth = 95
     
+    var imageCount = 1
+    
     private let scrollView = UIScrollView()
     
     var delegate: ImageSelectionViewDelegate? = nil
@@ -29,7 +31,7 @@ class ImageSelectionView: UIView {
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 95)
+        updateContentSize()
         
         // Setup Upload button
         let uploadButton = UIButton(type: .custom)
@@ -39,11 +41,6 @@ class ImageSelectionView: UIView {
         scrollView.addSubview(uploadButton)
         
         
-        // Sample Images
-        addImageToPreview(#imageLiteral(resourceName: "dog1"))
-        addImageToPreview(#imageLiteral(resourceName: "dog3"))
-        addImageToPreview(#imageLiteral(resourceName: "dog2"))
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,20 +50,18 @@ class ImageSelectionView: UIView {
     // MARK: - User Actions
     @objc private func uploadButtonDidTouch() {
         
-        // Fetch Image Asset
-        
-        // Load said asset
+        delegate?.userDidTouchAddImageButton()
         
     }
     
     
     // MARK: - Helpers
-    private func addImageToPreview(_ image: UIImage) {
+    func addImageToPreview(_ image: UIImage) {
         let view = UIImageView()
         
-        let imageCount = scrollView.subviews.count
         // move by width of all images and margins
-        let offset = imageCount * imageWidth + (10 * imageCount)
+        // account for the scrollbars as subviews
+        let offset = (imageCount * imageWidth) + (10 * imageCount)
         view.frame = CGRect(x: offset, y: 0, width: imageWidth, height: imageHeight)
         
         view.layer.masksToBounds = true
@@ -76,11 +71,16 @@ class ImageSelectionView: UIView {
         view.contentMode = .scaleAspectFill
         
         scrollView.addSubview(view)
-        
-        // Inform delegate
-        delegate?.user(didAdd: image)
+        imageCount += 1
+        updateContentSize()
     }
 
+    
+    
+    func updateContentSize() {
+        scrollView.contentSize.width = CGFloat((imageCount * imageWidth) + (imageCount * 10))
+    }
+    
 }
 
 

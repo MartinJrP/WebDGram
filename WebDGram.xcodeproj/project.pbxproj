@@ -62,6 +62,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		003D68C21F931EB000D17405 /* HomeTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */,
+				004A3F851F8F3AE500E2C2BC /* HomeTableViewController+DataSource.swift */,
+			);
+			path = HomeTableViewController;
+			sourceTree = "<group>";
+		};
+		003D68C31F931EC300D17405 /* UploadViewController */ = {
+			isa = PBXGroup;
+			children = (
+				007EA7521F857E0500D92261 /* UploadViewController.swift */,
+			);
+			path = UploadViewController;
+			sourceTree = "<group>";
+		};
 		0048AA321F7DEAF500B62185 = {
 			isa = PBXGroup;
 			children = (
@@ -126,9 +143,8 @@
 		009165DD1F7DFB0B002F8D09 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				00578F401F81E3ED0024FA45 /* HomeTableViewController.swift */,
-				004A3F851F8F3AE500E2C2BC /* HomeTableViewController+DataSource.swift */,
-				007EA7521F857E0500D92261 /* UploadViewController.swift */,
+				003D68C31F931EC300D17405 /* UploadViewController */,
+				003D68C21F931EB000D17405 /* HomeTableViewController */,
 				009F2CC11F8751DF00D3A483 /* WelcomeViewController.swift */,
 			);
 			path = Controllers;
