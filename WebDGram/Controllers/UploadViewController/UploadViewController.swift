@@ -168,7 +168,7 @@ class UploadViewController: UIViewController, ImageSelectionViewDelegate, UIImag
         
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            imagePicker.allowsEditing = true
+            //imagePicker.allowsEditing = true
             imagePicker.delegate = self
             
             present(imagePicker, animated: true, completion: nil)

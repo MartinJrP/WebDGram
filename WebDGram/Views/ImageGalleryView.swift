@@ -39,11 +39,9 @@ class ImageGalleryView: UIScrollView {
         for i in 0..<imageRefs.count {
             let imageView = UIImageView()
             imageView.contentMode = .scaleAspectFill
-            
+            imageView.sd_setImage(with: imageRefs[i], placeholderImage: #imageLiteral(resourceName: "placeholder-loading"))
             let xPos = screenWidth * CGFloat(i)
             imageView.frame = CGRect(x: xPos, y: 0, width: screenWidth, height: screenWidth)
-            
-            imageView.sd_setImage(with: imageRefs[i])
             
             self.addSubview(imageView)
         }
