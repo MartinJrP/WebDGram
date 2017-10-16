@@ -68,7 +68,7 @@ class ImageSelectionView: UIView {
         view.layer.cornerRadius = 5
         
         view.image = image
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         
         scrollView.addSubview(view)
         imageCount += 1
