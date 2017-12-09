@@ -41,10 +41,7 @@ class NetworkHandler {
             }
             
             var posts: [Post] = []
-            
-            /* TODO: - Explore custom objects when downloading data
-                       https://firebase.google.com/docs/firestore/query-data/get-data?authuser=0
-             */
+        
             
             for document in querySnapshot!.documents {
                 
