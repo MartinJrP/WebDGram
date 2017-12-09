@@ -13,8 +13,8 @@ Download a GoogleService-Info.plist file from Firebase console and include it in
 
 
 ## Known Issues
-  *This app does nothing to optimize the size of your images so the smaller the better.
-  *It doesn't play to nice with images that aren't square. I'm thinking of some way around this for a future update.
-  *Liking posts won't work (double-tap). It's coming in a future update.
-  *The timestamp also doesn't work
-  *For some reason refreshing the posts doesn't work. Also working on that. Restart the app to see you new post.
+* This app does nothing to optimize the size of your images so the smaller the better.
+* It doesn't play to nice with images that aren't square.
+* Liking posts won't work (double-tap).
+* The timestamp also doesn't work.
+* For some reason refreshing the posts doesn't work. Also working on that. Restart the app to see you new post.
