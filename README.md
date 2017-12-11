@@ -7,7 +7,7 @@ This was a small project used to introduce several iOS concepts at a time such a
 You'll need to set up a project in Firebase. This is the app's only data source. First install the Firebase SDK with cocoapods by running the following commands:
 
     $ pod install
-    $ open your-project.xcworkspace
+    $ open WebDGram.xcworkspace
 
 Download a GoogleService-Info.plist file from Firebase console and include it in the app.
 
